@@ -4,6 +4,9 @@ const router = express.Router();
 
 const pool = require('../modules/pool');
 
+const { parse } = require('json2csv');
+
+
 // GET /tasks
 // return all tasks from tasks table
 router.get('/', function (req, res) {
@@ -182,5 +185,39 @@ router.delete('/:id', function (req, res) {
     });
 });
   
+
+router.get('/download-history', (req, res) => {
+  console.log("GET download-history");
+
+  // Query to fetch task history
+  const queryText = `
+    SELECT 
+      task_id, 
+      task, 
+      complete, 
+      is_deleted, 
+      modified_at,
+      modified_status
+    FROM task_history
+    ORDER BY modified_at DESC;
+  `;
+
+  pool.query(queryText)
+    .then((dbRes) => {
+      const taskHistory = dbRes.rows;
+
+      // Convert the task history to CSV format
+      const csv = parse(taskHistory);
+
+      // Set the response headers to trigger a download
+      res.header('Content-Type', 'text/csv');
+      res.attachment('task_history.csv'); // Set filename
+      res.send(csv); // Send CSV data to client
+    })
+    .catch((err) => {
+      console.error('Error fetching task history:', err);
+      res.status(500).send('Failed to fetch task history.');
+    });
+});
 
 module.exports = router;

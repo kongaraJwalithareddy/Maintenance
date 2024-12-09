@@ -49,7 +49,17 @@ th {
   width: 75%;
 }
 
+.container-fluid{
+  padding-bottom: 40px;
+}
+
 #task-history-body{
   /* background-color: #d1e7dd; */
   background-color: #d1d3e7;
+}
+
+#download-btn{
+  width: 40px;
+  cursor: pointer;
+  position: relative;
 }

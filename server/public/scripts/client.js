@@ -16,6 +16,9 @@ function readyOn() {
 
   // Event listener for delete task button
   $('#task-table-body').on('click', '.delete-button', deleteTask);
+
+  $('#download-btn').click(downloadTasksHistory);
+
 }
 
 // get tasks from DB and render them to the DOM
@@ -205,4 +208,38 @@ function viewTaskHistory() {
       alert('Something went wrong while fetching task history.');
     });
   }
+}
+
+// Download tasks history
+function downloadTasksHistory() {
+  // Trigger the download by sending a GET request to the backend
+  $.ajax({
+    type: 'GET',
+    url: '/tasks/download-history', 
+    xhrFields: {
+      responseType: 'blob', //request to handle binary data, binary large object
+    },
+    success: function (data) {
+      const url = window.URL.createObjectURL(data); //Creates a temporary URL for the Blob
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'tasks_history.csv'; 
+      a.click();
+    },
+    error: function (error) {
+      console.log('Error downloading the file:', error);
+      alert('Failed to download tasks history');
+    },
+  });
+}
+
+
+module.exports={
+  readyOn,
+  getTasks,
+  submitTask,
+  completeTask,
+  deleteTask,
+  viewTaskHistory,
+  downloadTasksHistory,
 }
