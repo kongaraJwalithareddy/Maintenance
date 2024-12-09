@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SQL To Do List</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script src="./vendors/jquery.js"></script>
+    <script src="./scripts/client.js"></script>
+  </head>
+  <body class="container-fluid">
+    <header class="container-fluid">
+      <img src="./images/checkmark.png" alt="green check mark" />
+      <h1 class="display-1">Dusty's SQL To Do List APP</h1>
+    </header>
+    <main class="container justify-content-center">
+      <div class="form-div row">
+        <h2 class="display-2 col">Add a Task</h2>
+        <div class="w-100"></div>
+
+        <form class="container col" action="">
+          <div class="row">
+            <div class="col-10">
+              <input
+                type="text"
+                id="task-in"
+                placeholder="What to do?"
+                class="form-control form-control-lg"
+                required
+              />
+            </div>
+            <div class="col">
+              <input
+                type="submit"
+                id="submit-task"
+                value="Submit"
+                class="btn-lg btn-success col"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="container">
+        <h3 class="display-3">My To Do List</h3>
+        <table class="table container" id="task-table">
+          <thead>
+            <tr>
+              <th scope="col">Status</th>
+              <th scope="col">Tasks To Do</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody id="task-table-body">
+            <!-- Sample table for framework
+          <tr>
+            <td class="task-out">Task 1</td>
+            <td class="complete-false">
+                Complete!
+                <button class="completion-submit" data-complete="false">
+                  Not Complete
+                </button>
+            </td>
+            <td>
+              <button class="delete-button">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="task-out"><p>Task 3</p></td>
+            <td class="complete-true">
+              <p>
+                Not Complete...
+                <button class="completion-submit" data-complete="true">
+                  Completed
+                </button>
+              </p>
+            </td>
+            <td>
+              <button class="delete-button">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="task-out"><p>Task 3</p></td>
+            <td class="complete-true">
+              <p>
+                Not Complete...
+                <button class="completion-submit" data-complete="true">
+                  Completed
+                </button>
+              </p>
+            </td>
+            <td>
+              <button class="delete-button">Delete</button>
+            </td>
+          </tr> -->
+          </tbody>
+        </table>
+
+        <button id="view-history-btn" class="btn-lg btn-secondary">View History</button>
+        <!-- History Section (hidden by default) -->
+        <div id="task-history-container" style="display:none;">
+          <h3 class="display-3">To do list History</h3>
+          <table class="table container" id="task-table">
+            <thead>
+              <tr>
+                <th>Task ID</th>
+                <th>Task Name</th>
+                <!-- <th>Completed</th>
+                <th>Deleted</th> -->
+                <th>Activity</th>
+                <th>Modified At</th>
+              </tr>
+            </thead>
+            <tbody id="task-history-body">
+            
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      
+
+    </main>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
